@@ -6,12 +6,17 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 
+type Inputs = {
+  email: string;
+  password: string;
+};
+
 export default function SigninPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<Inputs>();
 
   const router = useRouter();
   const [error, setError] = useState(null);
@@ -84,7 +89,7 @@ export default function SigninPage() {
                       {...register("password", {
                         required: {
                           value: true,
-                          message: "email is require",
+                          message: "password is require",
                         },
                       })}
                       className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
@@ -140,7 +145,7 @@ export default function SigninPage() {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <button className="shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
+                    <button className="shadow-md flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
                       Iniciar sesión
                     </button>
                   </div>

@@ -4,12 +4,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
+type Inputs = {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export default function SignupPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<Inputs>();
 
   const router = useRouter();
 
@@ -40,7 +47,7 @@ export default function SignupPage() {
         <div className="container px-4">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
-              <div className="shadow-three mx-auto max-w-[500px] rounded bg-white px-6 py-10 dark:bg-dark sm:p-[60px]">
+              <div className="shadow-md mx-auto max-w-[500px] rounded bg-white px-6 py-10 dark:bg-dark sm:p-[60px]">
                 <h3 className="mb-3 text-center text-2xl font-bold text-black dark:text-white sm:text-3xl">
                   Crea tu cuenta
                 </h3>
@@ -111,7 +118,7 @@ export default function SignupPage() {
                       {...register("password", {
                         required: {
                           value: true,
-                          message: "email is require",
+                          message: "password is require",
                         },
                       })}
                       placeholder="Enter your Password"
@@ -136,7 +143,7 @@ export default function SignupPage() {
                       {...register("confirmPassword", {
                         required: {
                           value: true,
-                          message: "email is required",
+                          message: "confirm password is required",
                         },
                       })}
                       placeholder="Re-type your Password"

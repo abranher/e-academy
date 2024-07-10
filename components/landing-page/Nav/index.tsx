@@ -47,10 +47,8 @@ export default function NavMenu() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <NextLink href="/">
             <AcmeLogo />
-            <p className="font-bold text-inherit">ACADEMY</p>
-          </NextLink>
+            <NextLink href="/" className="font-bold text-inherit">ACADEMY</NextLink>
         </NavbarBrand>
       </NavbarContent>
 

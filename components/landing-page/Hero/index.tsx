@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { Button, Divider, Input } from "@nextui-org/react";
+import { Button, Divider } from "@nextui-org/react";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 // import {CheckIcon} from '../icons/CheckIcon';
 
-const Hero = () => {
+export default function Hero() {
   return (
     <>
       <section
@@ -25,15 +25,15 @@ const Hero = () => {
                   Academy es la mejor manera de aprender inglés en línea.
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
-                  <Button
-                    as={Link}
+                  <Link href="/auth/signin">
+                  <Button 
                     color="primary"
                     variant="shadow"
-                    href="/auth/signin"
                     startContent={<ArrowLeftIcon />}
                   >
                     Empezar
                   </Button>
+                  </Link>   
                 </div>
               </div>
             </div>
@@ -41,42 +41,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <section>
-        <section>
-          <section>
-            <h2>The modern landing page </h2>
-            <h2>for </h2>
-            <h2>React developers</h2>
-          </section>
-
-          <h2>
-            The easiest way to build React Landing page in seconds. Save time
-            and focus on your project.
-          </h2>
-
-          <section>
-            <Input placeholder="Enter your email address" size="lg" />
-            <Button>Start Free Trial</Button>
-          </section>
-          <section>
-            {/*<div>
-              <CheckIcon /> No credit card required.
-            </div>
-            <div>
-              <CheckIcon /> 14-day free trial.
-            </div>
-            <div>
-              <CheckIcon /> Cancel anytime.
-            </div>*/}
-          </section>
-        </section>
-        <section>
-          <Image src="mock.png" alt="next image" />
-        </section>
-      </section>
-      <Divider />
+      <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
     </>
   );
 };
-
-export default Hero;
