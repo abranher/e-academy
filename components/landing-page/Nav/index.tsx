@@ -20,6 +20,7 @@ import {
 import { AcmeLogo } from "../../icons/AcmeLogo";
 import { ThemeSwitcher } from "../ThemeSwitcher/index";
 import { useSession } from "next-auth/react";
+import NextLink from "next/link";
 
 export default function NavMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,14 +47,14 @@ export default function NavMenu() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link href="/">
+          <NextLink href="/">
             <AcmeLogo />
             <p className="font-bold text-inherit">ACADEMY</p>
-          </Link>
+          </NextLink>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden sm:flex gap-4">
         <NavbarItem>
           <Link color="foreground" href="#">
             Cursos
@@ -72,7 +73,7 @@ export default function NavMenu() {
       </NavbarContent>
 
       {status === "authenticated" ? (
-        <NavbarContent as="div" justify="end">
+        <NavbarContent as="div" justify="center">
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -105,19 +106,17 @@ export default function NavMenu() {
           </Dropdown>
         </NavbarContent>
       ) : (
-        <NavbarContent justify="end">
+        <NavbarContent justify="center">
           <NavbarItem className="hidden lg:flex">
-            <Link href="/auth/signin">Iniciar sesión</Link>
+            <NextLink href="/auth/signin">Iniciar sesión</NextLink>
           </NavbarItem>
+
           <NavbarItem>
-            <Button
-              as={Link}
-              color="primary"
-              href="/auth/signup"
-              variant="flat"
-            >
-              Crear cuenta
-            </Button>
+            <NextLink href="/auth/signup">
+              <Button color="primary" variant="flat">
+                Crear cuenta
+              </Button>
+            </NextLink>
           </NavbarItem>
 
           <NavbarItem>

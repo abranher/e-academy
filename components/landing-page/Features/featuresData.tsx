@@ -17,7 +17,7 @@ const featuresData: Feature[] = [
       "Tuae nam ex similique incidunt expedita exerci tationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
   },
   {
-    id: 1,
+    id: 2,
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" className="fill-current">
         <path
@@ -32,7 +32,7 @@ const featuresData: Feature[] = [
       "Tuae nam ex similique incidunt expedita exerci tationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
   },
   {
-    id: 1,
+    id: 3,
     icon: (
       <svg width="40" height="40" viewBox="0 0 40 40" className="fill-current">
         <path
