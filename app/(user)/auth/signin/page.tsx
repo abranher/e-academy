@@ -2,9 +2,13 @@
 
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import { Button, Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { EyeSlashFilledIcon } from "@/components/icons/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "@/components/icons/EyeFilledIcon";
+import { MailIcon } from "@/components/icons/MailIcon";
 
 type Inputs = {
   email: string;
@@ -20,6 +24,9 @@ export default function SigninPage() {
 
   const router = useRouter();
   const [error, setError] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = handleSubmit(async (data) => {
     const res = await signIn("credentials", {
@@ -38,7 +45,7 @@ export default function SigninPage() {
 
   return (
     <>
-      <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px] flex justify-center items-center">
+      <section className="relative z-10 overflow-hidden pb-16 pt-24 md:pb-20 lg:pb-28 flex justify-center items-center">
         <div className="container px-4">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
@@ -47,29 +54,26 @@ export default function SigninPage() {
                   Iniciar sesión en su cuenta
                 </h3>
                 {error && (
-                  <span className="bg-red-500 text-lg text-white p-3 m-2 rounded w-full">
+                  <div className="bg-red-500 text-lg text-white p-3 m-2 rounded w-full">
                     {error}
-                  </span>
+                  </div>
                 )}
-                <form onSubmit={onSubmit}>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="email"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      Email
-                    </label>
-
-                    <input
-                      type="email"
+                <form onSubmit={onSubmit} className="w-full">
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Correo"
+                      variant="bordered"
+                      placeholder="Ingresa tu correo"
                       {...register("email", {
                         required: {
                           value: true,
                           message: "email is require",
                         },
                       })}
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
-                      placeholder="Enter your Email"
+                      type="email"
+                      className="max-w-xs"
                     />
                     {errors.email && (
                       <span className="text-red-500">
@@ -77,23 +81,35 @@ export default function SigninPage() {
                       </span>
                     )}
                   </div>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="password"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      Your Password
-                    </label>
-                    <input
-                      type="password"
+
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Password"
+                      variant="bordered"
+                      placeholder="Enter your password"
                       {...register("password", {
                         required: {
                           value: true,
                           message: "password is require",
                         },
                       })}
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
-                      placeholder="Enter your Password"
+                      endContent={
+                        <button
+                          className="focus:outline-none"
+                          type="button"
+                          onClick={toggleVisibility}
+                        >
+                          {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          )}
+                        </button>
+                      }
+                      type={isVisible ? "text" : "password"}
+                      className="max-w-xs"
                     />
                     {errors.password && (
                       <span className="text-red-500">
@@ -101,6 +117,7 @@ export default function SigninPage() {
                       </span>
                     )}
                   </div>
+
                   <div className="mb-8 flex flex-col justify-between sm:flex-row sm:items-center">
                     <div className="mb-4 sm:mb-0">
                       <label
@@ -140,20 +157,20 @@ export default function SigninPage() {
                         href="#0"
                         className="text-sm font-medium text-primary hover:underline"
                       >
-                        Forgot Password?
+                        Olvidaste tu contraseña?
                       </a>
                     </div>
                   </div>
-                  <div className="mb-6">
-                    <button className="shadow-md flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
+                  <div className="mb-6 w-full flex justify-center">
+                    <Button color="primary" size="lg" type="submit">
                       Iniciar sesión
-                    </button>
+                    </Button>
                   </div>
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
-                  Don’t you have an account?{" "}
+                  No tienes cuenta?{" "}
                   <Link href="/signup" className="text-primary hover:underline">
-                    Sign up
+                    Registrate
                   </Link>
                 </p>
               </div>

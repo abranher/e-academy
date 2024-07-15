@@ -1,7 +1,11 @@
 "use client";
 
+import { EyeFilledIcon } from "@/components/icons/EyeFilledIcon";
+import { EyeSlashFilledIcon } from "@/components/icons/EyeSlashFilledIcon";
+import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type Inputs = {
@@ -19,6 +23,9 @@ export default function SignupPage() {
   } = useForm<Inputs>();
 
   const router = useRouter();
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
 
   const onSubmit = handleSubmit(async (data) => {
     if (data.password !== data.confirmPassword)
@@ -43,7 +50,7 @@ export default function SignupPage() {
 
   return (
     <>
-      <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px] flex justify-center items-center">
+      <section className="relative z-10 overflow-hidden pb-16 pt-24 md:pb-20 lg:pb-28 flex justify-center items-center">
         <div className="container px-4">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
@@ -54,25 +61,21 @@ export default function SignupPage() {
                 <p className="mb-11 text-center text-base font-medium text-body-color">
                   Es totalmente gratis y súper fácil.
                 </p>
-                <form onSubmit={onSubmit}>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="name"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      {" "}
-                      Username
-                    </label>
-                    <input
-                      type="text"
+                <form onSubmit={onSubmit} className="w-full">
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Nombre de Usuario"
+                      variant="bordered"
                       {...register("username", {
                         required: {
                           value: true,
-                          message: "Username is require",
+                          message: "El nombre de usuario es requerido!",
                         },
                       })}
-                      placeholder="Enter your full name"
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+                      type="text"
+                      className="max-w-xs"
                     />
                     {errors.username && (
                       <span className="text-red-500">
@@ -80,24 +83,21 @@ export default function SignupPage() {
                       </span>
                     )}
                   </div>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="email"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      Email
-                    </label>
 
-                    <input
-                      type="email"
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Correo"
+                      variant="bordered"
                       {...register("email", {
                         required: {
                           value: true,
-                          message: "email is require",
+                          message: "El correo es requerido!",
                         },
                       })}
-                      placeholder="Enter your Email"
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+                      type="email"
+                      className="max-w-xs"
                     />
                     {errors.email && (
                       <span className="text-red-500">
@@ -105,24 +105,34 @@ export default function SignupPage() {
                       </span>
                     )}
                   </div>
-                  <div className="mb-8">
-                    <label
-                      htmlFor="password"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      {" "}
-                      Your Password{" "}
-                    </label>
-                    <input
-                      type="password"
+
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Contraseña"
+                      variant="bordered"
                       {...register("password", {
                         required: {
                           value: true,
-                          message: "password is require",
+                          message: "La contraseña es requerida!",
                         },
                       })}
-                      placeholder="Enter your Password"
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+                      endContent={
+                        <button
+                          className="focus:outline-none"
+                          type="button"
+                          onClick={toggleVisibility}
+                        >
+                          {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          )}
+                        </button>
+                      }
+                      type={isVisible ? "text" : "password"}
+                      className="max-w-xs"
                     />
                     {errors.password && (
                       <span className="text-red-500">
@@ -131,23 +141,33 @@ export default function SignupPage() {
                     )}
                   </div>
 
-                  <div className="mb-8">
-                    <label
-                      htmlFor="password"
-                      className="mb-3 block text-sm text-dark dark:text-white"
-                    >
-                      Confirm Your Password
-                    </label>
-                    <input
-                      type="password"
+                  <div className="my-8">
+                    <Input
+                      size="lg"
+                      fullWidth
+                      label="Confirma contraseña"
+                      variant="bordered"
                       {...register("confirmPassword", {
                         required: {
                           value: true,
-                          message: "confirm password is required",
+                          message: "La confirmación es requerida!",
                         },
                       })}
-                      placeholder="Re-type your Password"
-                      className="border-stroke dark:text-body-color-dark dark:shadow-two w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+                      endContent={
+                        <button
+                          className="focus:outline-none"
+                          type="button"
+                          onClick={toggleVisibility}
+                        >
+                          {isVisible ? (
+                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          ) : (
+                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+                          )}
+                        </button>
+                      }
+                      type={isVisible ? "text" : "password"}
+                      className="max-w-xs"
                     />
                     {errors.confirmPassword && (
                       <span className="text-red-500">
@@ -199,18 +219,18 @@ export default function SignupPage() {
                     </label>
                   </div>
                   <div className="mb-6">
-                    <button className="shadow-submit dark:shadow-submit-dark flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white duration-300 hover:bg-primary/90">
+                    <Button color="primary" size="lg" type="submit">
                       Crear cuenta
-                    </button>
+                    </Button>
                   </div>
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
-                  Already using Startup?{" "}
+                  Ya tienes una cuenta?{" "}
                   <Link
                     href="/auth/signin"
                     className="text-primary hover:underline"
                   >
-                    Sign in
+                    Iniciar sesión
                   </Link>
                 </p>
               </div>
