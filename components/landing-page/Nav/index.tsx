@@ -26,52 +26,48 @@ export default function NavMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, status } = useSession();
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+  const menuItems = ["Cursos", "Tutores", "Contacto"];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered>
-      <NavbarContent>
+    <Navbar onMenuOpenChange={setIsMenuOpen} isBordered maxWidth="2xl">
+      <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-            <AcmeLogo />
-            <NextLink href="/" className="font-bold text-inherit">ACADEMY</NextLink>
+          <AcmeLogo />
+          <NextLink href="/" className="font-bold text-inherit">
+            ACADEMY
+          </NextLink>
         </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Cursos
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Tutores
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Contacto
-          </Link>
-        </NavbarItem>
+        
+        <NavbarContent className="hidden sm:flex gap-3">
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Inicio
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Cursos
+            </Link>
+          </NavbarItem>
+          <NavbarItem isActive>
+            <Link href="#" aria-current="page" color="secondary">
+              Tutores
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#">
+              Contacto
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
       </NavbarContent>
 
       {status === "authenticated" ? (
-        <NavbarContent as="div" justify="center">
+        <NavbarContent as="div" justify="end">
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar
@@ -93,27 +89,25 @@ export default function NavMenu() {
               <DropdownItem key="team_settings">Team Settings</DropdownItem>
               <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
-                <DropdownItem key="logout" color="danger">
-              <NextLink href="/api/auth/signout">
-                  Cerrar sesión
-              </NextLink>
-                </DropdownItem>
+              <DropdownItem key="logout" color="danger">
+                <NextLink href="/api/auth/signout">Cerrar sesión</NextLink>
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          
+
           <NavbarItem>
             <ThemeSwitcher />
           </NavbarItem>
         </NavbarContent>
       ) : (
-        <NavbarContent justify="center">
+        <NavbarContent justify="end">
           <NavbarItem className="hidden lg:flex">
             <NextLink href="/auth/signin">Iniciar sesión</NextLink>
           </NavbarItem>
 
           <NavbarItem>
             <NextLink href="/auth/signup">
-              <Button color="primary" variant="flat">
+              <Button color="primary" variant="flat" type="button">
                 Crear cuenta
               </Button>
             </NextLink>
