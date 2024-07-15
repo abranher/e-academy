@@ -44,12 +44,12 @@ export default function NavMenu() {
         
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>
-            <Link color="foreground" href="#">
+            <Link color="foreground" href="/">
               Inicio
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link color="foreground" href="#">
+            <Link color="foreground" href="/home/courses">
               Cursos
             </Link>
           </NavbarItem>
