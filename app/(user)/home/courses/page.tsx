@@ -51,7 +51,7 @@ export default function page() {
                       </CardBody>
                       <Divider />
                       <CardFooter>
-                        <Link href="">
+                        <Link href="/home/courses/2">
                           <Button color="primary" type="button">
                             Ver curso
                           </Button>

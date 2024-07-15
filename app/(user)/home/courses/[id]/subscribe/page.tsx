@@ -2,6 +2,7 @@
 
 import BoxBase from "@/components/landing-page/Boxes/BoxBase";
 import { Input, Select, SelectItem, Button } from "@nextui-org/react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function SubscribePage() {
@@ -53,6 +54,7 @@ export default function SubscribePage() {
 
               <div className="mb-4">
                 <Select
+                  label="Metodo de pago"
                   id="metodo_pago"
                   name="metodo_pago"
                   required
@@ -131,9 +133,11 @@ export default function SubscribePage() {
                     />
                   </div>
 
-                  <Button type="submit" color="primary">
-                    Pagar
-                  </Button>
+                  <Link href="/home">
+                    <Button type="button" color="primary">
+                      Pagar
+                    </Button>
+                  </Link>
                 </>
               )}
             </form>

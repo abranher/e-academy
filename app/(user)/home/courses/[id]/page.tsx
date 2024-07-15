@@ -1,6 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function CourseSelectedPage() {
   const params = useParams<{ id: string }>();
@@ -12,9 +14,11 @@ export default function CourseSelectedPage() {
           <h1 className="text-2xl font-bold">
             Inglés básico para principiantes
           </h1>
-          <a href="#" className="px-4 py-2 rounded bg-blue-500 text-white">
-            Inscribirme
-          </a>
+          <Link href="/home/courses/2/subscribe">
+            <Button color="primary" type="button">
+              Inscribirme
+            </Button>
+          </Link>
         </div>
       </header>
 
@@ -44,9 +48,7 @@ export default function CourseSelectedPage() {
           <h2 className="text-2xl font-bold">Recursos adicionales</h2>
           <ul className="list-disc mt-4">
             <li>Diccionario bilingüe español-inglés</li>
-            <li>Aplicaciones para aprender inglés</li>
             <li>Canciones y videos en inglés</li>
-            <li>Práctica con hablantes nativos</li>
           </ul>
         </section>
       </main>
