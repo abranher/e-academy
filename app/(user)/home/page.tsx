@@ -3,20 +3,8 @@
 import TutorInfo from "@/components/TutorInfo";
 import StudentInfo from "@/components/StudentInfo";
 import { Select, SelectItem } from "@nextui-org/react";
-
-const locations = [
-  { key: "usa", label: "USA" },
-  { key: "uk", label: "UK" },
-  { key: "australia", label: "Australia" },
-  { key: "nigeria", label: "Nigeria" },
-];
-
-const personalities = [
-  { key: "amable", label: "Amable" },
-  { key: "respetuoso", label: "Respetuoso" },
-  { key: "culto", label: "Culto" },
-  { key: "estricto", label: "Estricto" },
-];
+import { locations } from "@/app/_mocks/locations";
+import { personalities } from "@/app/_mocks/personalities";
 
 export default function HomePage() {
   return (

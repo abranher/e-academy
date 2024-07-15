@@ -216,7 +216,7 @@ export default function SignupPage() {
                     </span>
                   </label>
                 </div>
-                <div className="mb-6">
+                <div className="mb-6 w-full flex justify-center">
                   <Button color="primary" size="lg" type="submit">
                     Crear cuenta
                   </Button>
