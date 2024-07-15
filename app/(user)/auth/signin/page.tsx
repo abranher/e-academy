@@ -8,7 +8,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { EyeSlashFilledIcon } from "@/components/icons/EyeSlashFilledIcon";
 import { EyeFilledIcon } from "@/components/icons/EyeFilledIcon";
-import { MailIcon } from "@/components/icons/MailIcon";
 
 type Inputs = {
   email: string;
@@ -149,7 +148,7 @@ export default function SigninPage() {
                             </span>
                           </div>
                         </div>
-                        Keep me signed in
+                        Recuérdame
                       </label>
                     </div>
                     <div>
@@ -169,7 +168,10 @@ export default function SigninPage() {
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
                   No tienes cuenta?{" "}
-                  <Link href="/signup" className="text-primary hover:underline">
+                  <Link
+                    href="/auth/signup"
+                    className="text-primary hover:underline"
+                  >
                     Registrate
                   </Link>
                 </p>
@@ -177,6 +179,7 @@ export default function SigninPage() {
             </div>
           </div>
         </div>
+
         <div className="absolute left-0 top-0 z-[-1]">
           <svg
             width="1440"

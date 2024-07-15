@@ -1,3 +1,5 @@
+"use client";
+
 import TutorInfo from "@/components/TutorInfo";
 import StudentInfo from "@/components/StudentInfo";
 import { Select, SelectItem } from "@nextui-org/react";
