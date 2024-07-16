@@ -10,7 +10,6 @@ export default function RootLayout({
   return (
     <div
       suppressHydrationWarning
-      className="dark:bg-boxdark-2 dark:text-bodydark"
     >
       {children}
     </div>
