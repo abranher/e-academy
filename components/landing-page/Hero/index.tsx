@@ -2,9 +2,7 @@
 
 import Link from "next/link";
 import { Button, Divider } from "@nextui-org/react";
-import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import BoxBase from "../Boxes/BoxBase";
-// import {CheckIcon} from '../icons/CheckIcon';
 
 export default function Hero() {
   return (
@@ -25,9 +23,9 @@ export default function Hero() {
                   <Button
                     color="primary"
                     variant="shadow"
-                    startContent={<ArrowLeftIcon />}
+                    size="lg"
                   >
-                    Empezar
+                    Comienza hoy
                   </Button>
                 </Link>
               </div>
