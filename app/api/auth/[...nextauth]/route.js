@@ -18,14 +18,14 @@ export const authOptions = {
           },
         });
 
-        if (!userFound) throw new Error("No user found");
+        if (!userFound) throw new Error("Usuario no encontrado!");
 
         const matchPassword = await bcrypt.compare(
           credentials.password,
           userFound.password
         );
 
-        if (!matchPassword) throw new Error("Wrong password");
+        if (!matchPassword) throw new Error("Contraseña incorrecta!");
 
         return {
           id: userFound.id,

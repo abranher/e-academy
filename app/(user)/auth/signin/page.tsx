@@ -59,6 +59,7 @@ export default function SigninPage() {
     <>
       <BoxBase>
         <Card className="mx-auto max-w-sm">
+          <CardHeader>
           {error && (
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
@@ -66,8 +67,6 @@ export default function SigninPage() {
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
-
-          <CardHeader>
             <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
             <CardDescription>
               Ingrese su correo electrónico a continuación para iniciar sesión
@@ -82,7 +81,6 @@ export default function SigninPage() {
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
                   {...register("email", {
                     required: {
                       value: true,
@@ -101,13 +99,12 @@ export default function SigninPage() {
                     href="#"
                     className="ml-auto inline-block text-sm underline"
                   >
-                    OLvidaste tu contraseña?
+                    Olvidaste tu contraseña?
                   </Link>
                 </div>
                 <Input
                   id="password"
                   type="password"
-                  required
                   {...register("password", {
                     required: {
                       value: true,
@@ -127,7 +124,7 @@ export default function SigninPage() {
             </form>
             <div className="mt-4 text-center text-sm">
               No tienes una cuenta?{" "}
-              <Link href="#" className="underline">
+              <Link href="/auth/signup" className="underline">
                 Crear cuenta
               </Link>
             </div>
