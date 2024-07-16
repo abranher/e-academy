@@ -1,7 +1,5 @@
 "use client";
 
-//import "jsvectormap/dist/jsvectormap.css";
-//import "flatpickr/dist/flatpickr.min.css";
 import "@/styles/admin.css";
 
 export default function RootLayout({
@@ -11,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <div
-      suppressHydrationWarning={true}
+      suppressHydrationWarning
       className="dark:bg-boxdark-2 dark:text-bodydark"
     >
       {children}
