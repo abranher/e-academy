@@ -19,7 +19,7 @@ import {
 } from "@nextui-org/react";
 import { AcmeLogo } from "../../icons/AcmeLogo";
 import { ThemeSwitcher } from "../ThemeSwitcher/index";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import NextLink from "next/link";
 
 export default function NavMenu() {
@@ -41,7 +41,7 @@ export default function NavMenu() {
             ACADEMY
           </NextLink>
         </NavbarBrand>
-        
+
         <NavbarContent className="hidden sm:flex gap-3">
           <NavbarItem>
             <Link color="foreground" href="/">
@@ -89,8 +89,14 @@ export default function NavMenu() {
               <DropdownItem key="team_settings">Team Settings</DropdownItem>
               <DropdownItem key="system">System</DropdownItem>
               <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                <NextLink href="/api/auth/signout">Cerrar sesión</NextLink>
+              <DropdownItem
+                key="logout"
+                color="danger"
+                onClick={() => {
+                  signOut({ callbackUrl: "/auth/signin" });
+                }}
+              >
+                Cerrar sesión
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
