@@ -33,8 +33,9 @@
 ## Subscription
 
 + method
-+ level
++ level_id
 + student_id
++ reference
 + amount
 
 

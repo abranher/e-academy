@@ -38,21 +38,21 @@ export default function SubscribePage() {
   const companyData = {
     DI: "22338889",
     phone: "04125678745",
-    bank: "Banco de Venezuela S.A.",
+    bank: "Banco de Venezuela",
   };
 
   const [dataPM, setDataPM] = useState(false);
 
   const banks = [
-    { key: 1, label: "Banco de Venezuela" },
-    { key: 2, label: "Banco Mercantil" },
-    { key: 3, label: "Banco Provincial" },
-    { key: 4, label: "Banesco" },
-    { key: 5, label: "Banco Nacional de Crédito" },
-    { key: 7, label: "Banplus" },
-    { key: 8, label: "Banco Exterior" },
-    { key: 9, label: "Banco del Tesoro" },
-    { key: 10, label: "Banco Activo" },
+    { key: "1", label: "Banco de Venezuela" },
+    { key: "2", label: "Banco Mercantil" },
+    { key: "3", label: "Banco Provincial" },
+    { key: "4", label: "Banesco" },
+    { key: "5", label: "Banco Nacional de Crédito" },
+    { key: "7", label: "Banplus" },
+    { key: "8", label: "Banco Exterior" },
+    { key: "9", label: "Banco del Tesoro" },
+    { key: "10", label: "Banco Activo" },
   ];
 
   return (
@@ -93,25 +93,79 @@ export default function SubscribePage() {
                   <CardHeader>
                     <CardTitle>Pago Movil</CardTitle>
                     <CardDescription>
-                      Realiza tu pago a los siguientes:
+                      Realiza tu pago a los siguientes datos:
                     </CardDescription>
-                    Banco:
-                    <Snippet symbol="#" variant="bordered">
-                      {companyData.bank}
-                    </Snippet>
+
+                    <div>
+                      <p>Banco beneficiario</p>
+                      <Snippet symbol="#" variant="bordered" className="w-full">
+                        {companyData.bank}
+                      </Snippet>
+                    </div>
+
+                    <div>
+                      <p>Documento de identidad</p>
+                      <Snippet symbol="#" variant="bordered" className="w-full">
+                        {companyData.DI}
+                      </Snippet>
+                    </div>
+
+                    <div>
+                      <p>Número de télefono</p>
+                      <Snippet symbol="#" variant="bordered" className="w-full">
+                        {companyData.phone}
+                      </Snippet>
+                    </div>
+                    <div>
+                      <p>Monto</p>
+                      <Snippet symbol="#" variant="bordered" className="w-full">
+                        123
+                      </Snippet>
+                    </div>
                   </CardHeader>
                   <CardContent className="space-y-2">
+                    <CardDescription>
+                      Completa los datos de tu pago:
+                    </CardDescription>
                     <div className="space-y-1">
-                      <Label htmlFor="name">Name</Label>
-                      <Input id="name" defaultValue="Pedro Duarte" />
+                      <Label htmlFor="name">Documento de identidad:</Label>
+                      <Input id="name" placeholder="ej: 9890678" />
                     </div>
                     <div className="space-y-1">
-                      <Label htmlFor="username">Username</Label>
-                      <Input id="username" defaultValue="@peduarte" />
+                      <Label htmlFor="username">Número de télefono:</Label>
+                      <Input id="username" placeholder="04126756435" />
+                    </div>
+                    <div>
+                      <p>Banco:</p>
+                      <Select>
+                        <SelectTrigger
+                          id="model"
+                          className="items-start [&_[data-description]]:hidden"
+                        >
+                          <SelectValue placeholder="Selecciona tu banco" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {banks.map((bank) => (
+                            <SelectItem value={bank.key} key={bank.key}>
+                              <div className="flex items-start gap-3 text-muted-foreground">
+                                <Rabbit className="size-5" />
+                                <div className="grid gap-0.5">
+                                  <p>{bank.label}</p>
+                                </div>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-1">
+                      <Label htmlFor="new">Referencia</Label>
+                      <Input id="new" type="number" />
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button>Save changes</Button>
+                    <Button>Pagar</Button>
                   </CardFooter>
                 </Card>
               </TabsContent>
@@ -120,9 +174,14 @@ export default function SubscribePage() {
                   <CardHeader>
                     <CardTitle>PayPal</CardTitle>
                     <CardDescription>
-                      Change your password here. After saving, you'll be logged
-                      out.
+                      Realiza tu pago y llena los siguientes datos:
                     </CardDescription>
+                    <div>
+                      <p>Monto</p>
+                      <Snippet symbol="#" variant="bordered" className="w-full">
+                        123
+                      </Snippet>
+                    </div>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     <div className="space-y-1">
@@ -135,85 +194,12 @@ export default function SubscribePage() {
                     </div>
                   </CardContent>
                   <CardFooter>
-                    <Button>Save password</Button>
+                    <Button>Pagar</Button>
                   </CardFooter>
                 </Card>
               </TabsContent>
             </Tabs>
 
-            <div className="grid gap-3">
-              <Label htmlFor="model">Model</Label>
-              <Select>
-                <SelectTrigger
-                  id="model"
-                  className="items-start [&_[data-description]]:hidden"
-                >
-                  <SelectValue placeholder="Select a model" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="genesis">
-                    <div className="flex items-start gap-3 text-muted-foreground">
-                      <Rabbit className="size-5" />
-                      <div className="grid gap-0.5">
-                        <p>
-                          Neural{" "}
-                          <span className="font-medium text-foreground">
-                            Genesis
-                          </span>
-                        </p>
-                        <p className="text-xs" data-description>
-                          Our fastest model for general use cases.
-                        </p>
-                      </div>
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="explorer">
-                    <div className="flex items-start gap-3 text-muted-foreground">
-                      <Bird className="size-5" />
-                      <div className="grid gap-0.5">
-                        <p>
-                          Neural{" "}
-                          <span className="font-medium text-foreground">
-                            Explorer
-                          </span>
-                        </p>
-                        <p className="text-xs" data-description>
-                          Performance and speed for efficiency.
-                        </p>
-                      </div>
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="quantum">
-                    <div className="flex items-start gap-3 text-muted-foreground">
-                      <Turtle className="size-5" />
-                      <div className="grid gap-0.5">
-                        <p>
-                          Neural{" "}
-                          <span className="font-medium text-foreground">
-                            Quantum
-                          </span>
-                        </p>
-                        <p className="text-xs" data-description>
-                          The most powerful model for complex computations.
-                        </p>
-                      </div>
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="temperature">Temperature</Label>
-              <Input id="temperature" type="number" placeholder="0.4" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="top-p">Top P</Label>
-              <Input id="top-p" type="number" placeholder="0.7" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="top-k">Top K</Label>
-              <Input id="top-k" type="number" placeholder="0.0" />
-            </div>
           </fieldset>
         </div>
       </BoxBase>
